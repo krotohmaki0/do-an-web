@@ -1,19 +1,6 @@
-// ví dụ sử dụng javascript thuần
-window.addEventListener("load", () => {
-	let title = document.querySelector("h3");
-
-	title.onmouseover = () => {
-		title.style.color = "deeppink";
-	};
-
-	title.addEventListener("mouseleave", () => {
-		title.style.color = "black";
-	});
-});
-
-// ví dụ sử dụng jquery
-$(document).ready(() => {
-	$("#test").on("click", () => {
-		$("h3").html("jQuery đã hoạt động");
-	});
+$(document).ready((e) => {
+	$.get("http://localhost:8080/admin/getData.php", (data, status) => {  
+		console.log("status: " + status);
+		console.log("data: " + data);
+	}, "json");
 });
