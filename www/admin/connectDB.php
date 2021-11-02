@@ -1,12 +1,15 @@
 <?php
+    header('Access-Control-Allow-Origin: *');
+
     $host = 'mysql-server';
     $user = 'root';
     $pass = 'root';
     $db = 'product_management';
 
-    $conn = new mysqli($host, $user, $pass, $db);
-    $conn->set_charset("utf8");
-    if ($conn->connect_error) {
-        die('khong the ket noi database: ' . $conn->connect_error);
+    try{
+        $conn = new PDO("mysql:host=".$host.";dbname=".$db, $user, $pass, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+    }
+    catch(PDOException $ex){
+        die(json_encode(array('status' => false, 'data' => 'Unable to connect: ' . $ex->getMessage())));
     }
 ?>

@@ -1,20 +1,19 @@
 <?php
-    require("connectDB.php");
+    require_once ("connectDB.php");
 
     $sql = "SELECT * from product";
-    $result = $conn->query($sql);
 
-
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) 
-        {
-            echo json_encode($row);
-            echo "<br>";
-        }
+    try{
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
     }
-    else {
-        echo "Bảng chưa có dữ liệu";
+    catch(PDOException $ex){
+        die(json_encode(array('status' => false, 'data' => $ex->getMessage())));
     }
 
-    $data = array("first" => "1", "second" => "2");
+    $data = array();
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $data[] = $row;
+    }
+    echo json_encode($data);
 ?>
