@@ -13,7 +13,5 @@
 </head>
 <body>
 
-
-	<script src="/main.js"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 
 CREATE DATABASE IF NOT EXISTS `product_management` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE `product_management`;
-
+GO
 
 CREATE TABLE `product` (
   `id` int PRIMARY KEY auto_increment NOT NULL,
@@ -9,6 +9,7 @@ CREATE TABLE `product` (
   `price` int DEFAULT 0,
   `description` varchar(255) DEFAULT NULL
 );
+GO
 
 INSERT INTO `product` (`name`, `price`, `description`) VALUES
 ('Macbook Pro', 1500, '16 inch, 32GB RAM'),
