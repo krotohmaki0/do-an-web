@@ -56,6 +56,7 @@
 			<div>
 				<input id="file" type="file" name="avatar">
 				<button id="avatar-btn" class="btn btn-primary">Đổi ảnh đại diện</button>
+				<button id="confirm" class="btn btn-primary">Xác nhận</button>
 				<button id="password-change" class="btn btn-primary">Đổi mật khẩu</button>
 			</div>
 		</div>
@@ -63,12 +64,17 @@
 
 	<script>
 		$(document).ready((e) => {
+			$("#confirm").hide();
+
 			$("#avatar-btn").click((e) => {
 				$("#file").click();
 			});
 
             $("#file").change((e) => {
-                let fd = new FormData();
+				$("#avatar-btn").text("Chọn lại");
+				$("#confirm").show();
+
+				let fd = new FormData();
                 let files = $("#file")[0].files[0];
 
                 fd.append("file", files);
@@ -80,10 +86,15 @@
                     contentType: false,
                     processData: false,
                     success: (res) => {
-                        if (res != 0) console.log(res);
+						$("#avatar-display").attr("src", "/admin/" + res);
                     }
                 });
             });
+
+			$("#confirm").click((e) => {
+				$("#confirm").hide();
+				$("#avatar-btn").text("Đổi ảnh đại diện");
+			});
 		});
 	</script>
 </body>
