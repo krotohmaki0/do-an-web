@@ -1,3 +1,17 @@
 body {
-    background-attachment: fixed;
+    width: 100vw;
+    height: 100vh;
+    margin: 0px;
+}
+
+/*/////////////////////////////////
+////////// dang-nhap.php //////////
+/////////////////////////////////*/
+div.login-main {
+    width: 500px;
+    margin: auto;
+}
+
+div.login-main h2 {
+    text-align: center;	
 }
